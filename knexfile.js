@@ -1,10 +1,19 @@
+// require('dotenv').config();
+
+const localPg = {
+	host:'localhost', 
+	port: 5432,
+	//password: 'postgres',
+	user: 'noitoy',
+	database: 'postgres'
+}
+// client: 'sqlite3',
+// filename: './data/bookr.sqlite3'
 module.exports = {
 
 	development: {
-		client: 'sqlite3',
-		connection: {
-			filename: './data/bookr.sqlite3'
-		},
+		client: 'pg', 
+		connection: localPg,
 		useNullAsDefault: true,
 		migrations: {
 			directory: './data/migrations',
@@ -13,8 +22,8 @@ module.exports = {
 		seeds: { directory: './data/seeds' },
 	},
 	production: {
-		client: 'postgresql',
-		connection: process.env.DATABASE_URL,
+		client: 'pg',
+		connection: localPg,
 		pool: {
 			min: 2,
 			max: 10
